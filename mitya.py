@@ -31,8 +31,14 @@ async def on_ready():
     await client.change_presence(status=discord.Status.idle, activity=discord.Activity(type=discord.ActivityType.watching, name="watching a performance..."))
 
 @client.command()
+async def m(ctx):
+    randomify = playlist_newLink.pop(random.randint(0,len(playlist_newLink) - 1));
+    await ctx.send(f"-# [☆]({randomify})")  
+    print(randomify.title)
+    
+@client.command()
 async def q(ctx, *, repeat="erm"):
-    if repeat == "i'm stupid" or repeat == "im stupid":
+    if repeat.casefold() == "i'm stupid" or repeat.casefold() == "im stupid":
         await ctx.send("i know")
     else:
         # ˚₊ ‧︵‿₊୨୧₊‿︵⠀‧˚₊ ˚ . ₊ ‧︵‿₊୨୧₊‿︵⠀‧˚₊
@@ -58,11 +64,5 @@ async def hi(ctx):
     #embed.set_footer(text="Test Footer")
     
     await ctx.send(embed=embed)
-    
-@client.command()
-async def m(ctx):
-    randomify = playlist_newLink.pop(random.randint(0,len(playlist_newLink) - 1));
-    await ctx.send(f"-# [☆]({randomify})")  
-    print(randomify.title)
     
 client.run(DISCORD_TOKEN)    

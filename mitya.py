@@ -22,7 +22,11 @@ playlist_url = Playlist(playlist_link)
 playlist_list = list(playlist_url.video_urls)
 playlist_newLink = [url.replace("www.youtube.com", "koutu.be") for url in playlist_list]
 
-images = ["./images/Mitya.png", "./images/Mitya2.png", "./images/Mitya3.png", "./images/Mitya4.png", "./images/Mitya5.png", "./images/Mitya6.png", "./images/Mitya7.png", "./images/Mitya8.png"]
+# images = ["./images/Mitya.png", "./images/Mitya2.png", "./images/Mitya3.png", "./images/Mitya4.png", "./images/Mitya5.png", "./images/Mitya6.png", "./images/Mitya7.png", "./images/Mitya8.png", "./images/Mitya9.png", "./images/Mitya10.png","./images/Mitya11.png","./images/Mitya12.png","./images/Mitya13.png"]
+
+images_path = "./images"
+image_list = os.listdir(images_path)
+images = ['./images/' + item for item in image_list]
 
 DISCORD_TOKEN = os.getenv('BOT_TOKEN')
 
@@ -32,10 +36,14 @@ async def on_ready():
     await client.change_presence(status=discord.Status.idle, activity=discord.Activity(type=discord.ActivityType.watching, name="watching a Korolevsky Theatre performance..."))
 
 @client.command()
+async def test(ctx):
+    await ctx.send("<:Mitya_div1:1570679997377552455><:Mitya_div2:1570679998958927924><:Mitya_div3:1570680000603103333><:Mitya_div4:1570680002788462602>")
+
+@client.command()
 async def r(ctx):
     dice = random.randint(1, 100);
     
-    await ctx.send(f"You\'ve rolled {dice}!!!")
+    await ctx.send(f"You\'ve rolled {dice}!!! <:Mitya_div1:1570679997377552455><:Mitya_div2:1570679998958927924><:Mitya_div3:1570680000603103333><:Mitya_div4:1570680002788462602>")
 
 @client.command()
 async def m(ctx):
@@ -74,7 +82,7 @@ async def q(ctx, *, repeat="erm"):
         font = ImageFont.truetype("./Fonts/NanumGothic/NanumGothic-ExtraBold.ttf", dynamicsize, encoding="UTF-8")
         wrapped = wrap.wrap(text, font, max_width=img.width - 15)
 
-        draw.multiline_text((img.width / 2, img.height / 7), wrapped, font=font, stroke_width=2, stroke_fill=(43, 0, 158), fill=(214, 194, 255), anchor="mm", align="center", spacing=14)
+        draw.multiline_text((img.width / 2, img.height / 8), wrapped, font=font, stroke_width=2, stroke_fill=(43, 0, 158), fill=(241, 235, 255), anchor="mm", align="center", spacing=14)
         output_image_path = "./output/Mityas.png"
         img.save(output_image_path)
         await ctx.send(f'<@{ctx.author.id}>\'s quote:', file=discord.File(output_image_path))  

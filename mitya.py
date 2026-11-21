@@ -1,13 +1,9 @@
-import os
-import random
-import discord
+import os, random, discord, pytubefix, wrap
 from discord.ext import commands
 from dotenv import load_dotenv
-import pytubefix
 from pytubefix import Playlist, YouTube
 from pytubefix.cli import on_progress
 from PIL import Image, ImageDraw, ImageFont
-import wrap
 # my eyes hurt
 # ˚₊ ‧︵‿₊୨୧₊‿︵⠀‧˚₊ ˚ . ₊ ‧︵‿₊୨୧₊‿︵⠀‧˚₊
 load_dotenv()
@@ -22,8 +18,6 @@ playlist_url = Playlist(playlist_link)
 playlist_list = list(playlist_url.video_urls)
 playlist_newLink = [url.replace("www.youtube.com", "koutu.be") for url in playlist_list]
 
-# images = ["./images/Mitya.png", "./images/Mitya2.png", "./images/Mitya3.png", "./images/Mitya4.png", "./images/Mitya5.png", "./images/Mitya6.png", "./images/Mitya7.png", "./images/Mitya8.png", "./images/Mitya9.png", "./images/Mitya10.png","./images/Mitya11.png","./images/Mitya12.png","./images/Mitya13.png"]
-
 images_path = "./images"
 image_list = os.listdir(images_path)
 images = ['./images/' + item for item in image_list]
@@ -33,7 +27,7 @@ DISCORD_TOKEN = os.getenv('BOT_TOKEN')
 # ˚₊ ‧︵‿₊୨୧₊‿︵⠀‧˚₊ ˚ . ₊ ‧︵‿₊୨୧₊‿︵⠀‧˚₊
 @client.event
 async def on_ready():
-    await client.change_presence(status=discord.Status.idle, activity=discord.Activity(type=discord.ActivityType.watching, name="watching a Korolevsky Theatre performance..."))
+    await client.change_presence(status=discord.Status.idle, activity=discord.Activity(type=discord.ActivityType.watching, name="a Korolevskiy Theatre performance..."))
 
 @client.command()
 async def test(ctx):
@@ -90,7 +84,7 @@ async def q(ctx, *, repeat="erm"):
 @client.command()
 async def hi(ctx):
     embed=discord.Embed(title="Mitya bot Commands", description=f'Good morning, <@{ctx.author.id}>! Wait, is it morning? Ah, doesn\'t matter! Anyway, please step into my office... Great, sit right here. Someone will be right with you. Just tell them you\'re Mitya, an expert from the Energy Commission. Got that? Okay, bye bye!\n\n __Commands__\n`.q type_anything_here` - Make a quote with random Mitya images\n`.m` - Random Genshin music\n`.d Yt_Link` - Turn a Youtube video into audio only\n`.r` - Roll a number through 1 to 100', color=0x8256FF)
-    embed.set_image(url="https://static.wikia.nocookie.net/gensin-impact/images/c/c2/Version_7.2_Event_Calendar_Wallpaper.png/revision/latest/scale-to-width-down/1000?cb=20261027042026")
+    embed.set_image(url="https://pbs.twimg.com/media/HVilkFRXwAA65n3?format=jpg&name=4096x4096")
     #embed.set_footer(text="Test Footer")
     
     await ctx.send(embed=embed)
